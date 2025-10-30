@@ -5,11 +5,10 @@ on:
 jobs:
   say-hello:
     runs-on: ubuntu-latest
-
-  steps:
+    steps:
     - name: checkout
       uses: actions/checkout@v4
 
-      name: say-hello
+    - name: say-hello
       run: echo " hello github actions"
 
