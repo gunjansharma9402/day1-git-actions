@@ -12,5 +12,8 @@ jobs:
         uses: github/super-linter@v6
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          VALIDATE_ALL_CODEBASE: true
+          OUTPUT_DETAILS: detailed
+          SUPPRESS_GITHUB_API_CALLS: true
       - name : Run app
         run: node index.js
