@@ -1,0 +1,34 @@
+name: CI-Matrix
+
+on: 
+  pull_request:
+    branches: [main]
+jobs:
+  test:
+    runs-on: ${{matrix.os}}
+    
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest] #test matrix change
+        node: [16,18]
+
+      steps: 
+        - uses: actions/checkout@v4
+        - name: setup node
+          uses: actions/setup-node@v4
+          with:
+            node-version: ${{matrix.node}}
+        - name: install deps
+          run: npm install 
+
+        - name: Run tests
+          run: npm test
+
+        - name: show secret length
+          run: echo " Secret length: ${#SECRET}"
+           env:
+          SECRET: ${{ secrets.MY_SECRET }}
+
+      - name: Deploy step
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: echo "Deploying... 
