@@ -9,6 +9,6 @@ jobs:
         with:
           node-version: 18
       - name: Lint code
-      - uses: github/superlinter@v6
+        uses: github/superlinter@v6
       - name : Run app
         run: node index.js
